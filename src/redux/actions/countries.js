@@ -1,9 +1,13 @@
 
-const getCoutries = () => {
+const getCoutries = (value='russian') => {
   return (dispatch, getState, { api,apiImg })  => {
     dispatch({ type: 'TICKET_CREATE_REQUESTED' });
     apiImg({
-      method: 'GET'})
+      method: 'GET',
+      params:{
+        q:value
+      }
+    })
     .then(
       (returnedData) => {
        const random = Math.floor(Math.random() * Math.floor(returnedData.data.hits.length));
@@ -13,9 +17,12 @@ const getCoutries = () => {
         }
     );
     api({
-      method: 'GET'})
+      method: 'GET',
+      url:`/name/${value}`
+    })
     .then(
       (returnedData) => {
+        dispatch({type:'COUNTRIES_SUCCESS',countries:returnedData.data})
       },
       (error) => {
         }

@@ -11,7 +11,6 @@ const App = () => {
       <Header />
       <Switch>
         <Route exact path="/" component={Home} />
-        {/* <Route exact path="/event/:slug" component={EventPage} /> */}
         <Route component={Page404} />
       </Switch>
       <Footer />

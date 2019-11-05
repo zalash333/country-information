@@ -7,7 +7,7 @@ import Input from '../../components/Input';
 
 
 const Header = () => {
-    const photoHeader = useSelector((state)=>state.countres.photoHeader)
+    const photoHeader = useSelector((state)=>state.countries.photoHeader)
     return (
         <div className={cls.header}>
             <img className={cls.header_img} src={photoHeader} alt='header logo' />
