@@ -1,14 +1,14 @@
 import React, { useEffect } from 'react';
 import {useDispatch} from 'react-redux'
 import cls from './style.module.scss'
-import ticket from '../../redux/actions/ticket';
+import countres from '../../redux/actions/countres';
 
 
 const Home = (props) => {
     const dispatch = useDispatch()
     useEffect(()=>{
-        dispatch(ticket.getCoutries())
-    },[])
+        dispatch(countres.getCoutries())
+    },[dispatch])
   return (
     <React.Fragment>
       <div className={cls.home}>

@@ -1,18 +1,12 @@
 
 const getCoutries = () => {
-  // if (push) {
-  //   // eslint-disable-next-line no-param-reassign
-  //   data.pushEvent = push;
-  // }
   return (dispatch, getState, { api,apiImg })  => {
-    debugger
     dispatch({ type: 'TICKET_CREATE_REQUESTED' });
     apiImg({
       method: 'GET'})
     .then(
       (returnedData) => {
        const random = Math.floor(Math.random() * Math.floor(returnedData.data.hits.length));
-        debugger
         dispatch({type:'PHOTO_COUNTRIES',photoHeader:returnedData.data.hits[random].largeImageURL})
       },
       (error) => {
@@ -22,7 +16,6 @@ const getCoutries = () => {
       method: 'GET'})
     .then(
       (returnedData) => {
-        debugger
       },
       (error) => {
         }

@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { makeStyles, createStyles } from '@material-ui/core/styles';
-import { FormControl, InputLabel, Select, MenuItem } from '@material-ui/core';
+import { FormControl, Select, MenuItem } from '@material-ui/core';
+import i18n from 'i18next';
+import Language from '../../helpers/language';
 
 
 const useStyles = makeStyles((theme) =>
@@ -16,25 +18,23 @@ const useStyles = makeStyles((theme) =>
             color: theme.palette.text.secondary,
             'margin-top': 20,
             'margin-left': 20,
-            width: 340,
-            height: 200,
+            width: 150,
+            height: 150,
         },
     }),
 );
 
 const Selector = () => {
     const classes = useStyles();
-    const [local, setLocal] = useState('en');
+    const [local, setLocal] = useState(Language());
     const handleChange = (event) => {
-        debugger
         setLocal(event.target.value);
+        localStorage.setItem('language', event.target.value);
+        i18n.changeLanguage(event.target.value);
     };
 
     return (
         <FormControl variant="outlined" className={classes.formControl}>
-            <InputLabel id="demo-simple-select-outlined-label">
-                local
-        </InputLabel>
             <Select
                 labelId="demo-simple-select-outlined-label"
                 id="demo-simple-select-outlined"

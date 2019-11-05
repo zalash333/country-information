@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
 // import { reducer as formReducer } from 'redux-form';
-import ticket from './ticket';
+import countres from './countres';
 
 export default combineReducers({
   // form: formReducer,
-  ticket
+  countres
 });
