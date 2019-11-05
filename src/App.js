@@ -1,25 +1,24 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import cls from './style.module.scss'
+import Header from './page/Header';
+import Home from './page/Home';
+import Page404 from './page/Page404';
+import Footer from './page/Footer';
+import { Route, Switch } from 'react-router-dom';
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <React.Fragment>
+      <Header />
+      <div className={cls.conteiner}>
+        <Switch>
+          <Route exact path="/" component={Home} />
+          {/* <Route exact path="/event/:slug" component={EventPage} /> */}
+          <Route component={Page404} />
+        </Switch>
+      </div>
+      <Footer />
+    </React.Fragment>
   );
 }
 
