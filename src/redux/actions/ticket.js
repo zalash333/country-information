@@ -1,6 +1,36 @@
-import { SubmissionError } from 'redux-form';
 
-function createTicket(data, eventSlug, boatSlug, push, callback) {
+const getCoutries = () => {
+  // if (push) {
+  //   // eslint-disable-next-line no-param-reassign
+  //   data.pushEvent = push;
+  // }
+  return (dispatch, getState, { api,apiImg })  => {
+    debugger
+    dispatch({ type: 'TICKET_CREATE_REQUESTED' });
+    apiImg({
+      method: 'GET'})
+    .then(
+      (returnedData) => {
+       const random = Math.floor(Math.random() * Math.floor(returnedData.data.hits.length));
+        debugger
+        dispatch({type:'PHOTO_COUNTRIES',photoHeader:returnedData.data.hits[random].largeImageURL})
+      },
+      (error) => {
+        }
+    );
+    api({
+      method: 'GET'})
+    .then(
+      (returnedData) => {
+        debugger
+      },
+      (error) => {
+        }
+    );
+  };
+}
+
+const createTicket = (data, eventSlug, boatSlug, push, callback) => {
   if (push) {
     // eslint-disable-next-line no-param-reassign
     data.pushEvent = push;
@@ -32,7 +62,6 @@ function createTicket(data, eventSlug, boatSlug, push, callback) {
         dispatch({ type: 'TICKET_REQUEST_FAILURE', errors: err });
         // eslint-disable-next-line no-underscore-dangle
         callback(err._error);
-        throw new SubmissionError(err);
       },
     );
   };
@@ -68,4 +97,5 @@ function checkYachtInEvent(callback) {
 export default {
   checkYachtInEvent,
   createTicket,
+  getCoutries
 };

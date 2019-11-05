@@ -1,0 +1,20 @@
+.home{
+    display: flex;
+    justify-content: center;
+    background: #F4F4F4;
+    .home_content{
+      display: flex;
+      max-width: 1140px;
+      width: 100%;
+    }
+  }
+  .block_login{
+    display: flex;
+    flex-direction: column;
+    span{
+  
+    }
+    .input{
+      margin-top: 20px
+    }
+  }

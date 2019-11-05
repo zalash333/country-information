@@ -7,8 +7,11 @@ import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import Store from './redux/Store';
 import './locales';
+import Api from './helpers/api';
 
-const store = Store();
+const api = new Api();
+const store = Store({ api: api.api, apiImg:api.apiImg });
+
 ReactDOM.render(
     <Provider store={store}>
         <BrowserRouter>
