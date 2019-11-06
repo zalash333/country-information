@@ -1,32 +1,35 @@
 
-const getCoutries = (value='russian') => {
-  return (dispatch, getState, { api,apiImg })  => {
+const getCoutries = (value = {q:'russian'}) => {
+  return (dispatch, getState, { api, apiImg }) => {
     dispatch({ type: 'TICKET_CREATE_REQUESTED' });
-    apiImg({
-      method: 'GET',
-      params:{
-        q:value
-      }
-    })
-    .then(
-      (returnedData) => {
-       const random = Math.floor(Math.random() * Math.floor(returnedData.data.hits.length));
-        dispatch({type:'PHOTO_COUNTRIES',photoHeader:returnedData.data.hits[random].largeImageURL})
-      },
-      (error) => {
-        }
-    );
     api({
       method: 'GET',
-      url:`/name/${value}`
+      url: `/name/${value.q}`
     })
-    .then(
-      (returnedData) => {
-        dispatch({type:'COUNTRIES_SUCCESS',countries:returnedData.data})
-      },
-      (error) => {
+      .then(
+        (returnedData) => {
+          dispatch({ type: 'COUNTRIES_SUCCESS', countries: returnedData.data })
+          dispatch({ type: 'LOADING_PHOTO', isRequestedPhoto: true})
+          apiImg({
+            method: 'GET',
+            params: {
+              value
+            }
+          })
+            .then(
+              (returnedData) => {
+                const random = Math.floor(Math.random() * Math.floor(returnedData.data.hits.length));
+                dispatch({ type: 'PHOTO_COUNTRIES', photoHeader: returnedData.data.hits[random].largeImageURL })
+                dispatch({ type: 'LOADING_PHOTO', isRequestedPhoto: false})
+              },
+              (error) => {
+                dispatch({ type: 'LOADING_PHOTO', isRequestedPhoto: false})
+              }
+            );
+        },
+        (error) => {
         }
-    );
+      );
   };
 }
 

@@ -1,5 +1,5 @@
 const initialState = {
-  isRequested: false,
+  isRequestedPhoto: false,
   error: '',
   countries: [],
   photoHeader:'https://images.pexels.com/photos/461755/pexels-photo-461755.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'
@@ -7,9 +7,11 @@ const initialState = {
 function countries(state = initialState, action) {
   switch (action.type) {
       case 'PHOTO_COUNTRIES':
-        return { ...state, photoHeader: action.photoHeader };
+        return { ...state, photoHeader: action.photoHeader,isRequestedPhoto:false };
         case 'COUNTRIES_SUCCESS':
           return { ...state, countries: action.countries };
+          case 'LOADING_PHOTO':
+            return {...state,isRequestedPhoto:action.isRequestedPhoto}
     default:
       return state;
   }

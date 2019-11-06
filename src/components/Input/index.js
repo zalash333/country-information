@@ -1,12 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 import clsx from 'clsx';
 import styled from 'styled-components';
 import Search from '@material-ui/icons/Search';
 import IconButton from '@material-ui/core/IconButton';
+import { useDispatch } from 'react-redux'
+import qs from 'qs'
+import { withRouter } from "react-router";
 
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import { TextField, InputAdornment } from '@material-ui/core'
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
+import countries from '../../redux/actions/countries';
 
 const top100Films = [
     { title: 'The Shawshank Redemption', year: 1994 },
@@ -109,8 +113,8 @@ const top100Films = [
     { title: 'Snatch', year: 2000 },
     { title: '3 Idiots', year: 2009 },
     { title: 'Monty Python and the Holy Grail', year: 1975 },
-  ];
-  
+];
+
 
 const StyledTextField = styled(TextField)`
 label.Mui-focused {
@@ -156,8 +160,20 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 
-const Input = () => {
+const Input = ({history}) => {
+    // const dispatch = useDispatch()
     const classes = useStyles();
+    const [value, setValue] = useState('')
+    const onChange = (val) => {
+        setValue(val.target.value)
+    }
+    const getCoutries = () => {
+        // dispatch(countries.getCoutries(value))
+        const url = qs.stringify({q:value}, {
+            arrayFormat: 'brackets',
+          });
+          history.push(`?${url}`);
+    }
     return (
         <Autocomplete
             options={top100Films}
@@ -169,14 +185,18 @@ const Input = () => {
                 className={clsx(classes.margin, classes.textField)}
                 variant="outlined"
                 label="search"
-                // value={values.weight}
-                // onChange={handleChange('weight')}
-                // helperText="Weight"
+                value={value}
+                onChange={onChange}
+                onKeyPress={(e) => {
+                    if (e.charCode === 13) {
+                        getCoutries()
+                    }
+                }}
                 InputProps={{
-                    endAdornment: <InputAdornment position="end"><IconButton><Search className={clsx(classes.search)} /></IconButton></InputAdornment>,
+                    endAdornment: <InputAdornment onClick={getCoutries} position="end"><IconButton><Search className={clsx(classes.search)} /></IconButton></InputAdornment>,
                 }}
             />)}
         />
     )
 }
-export default Input
+export default withRouter(Input)
