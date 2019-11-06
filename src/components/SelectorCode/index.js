@@ -15,9 +15,8 @@ const SelectorCode = ({ location, history }) => {
             ignoreQueryPrefix: true,
         })
         url.code = true
-        delete url.q
         if (event.target.value !== 'default') {
-            url.codeCountry = event.target.value
+            url.q = event.target.value
             url = qs.stringify({...url}, {
                 arrayFormat: 'brackets',
             });

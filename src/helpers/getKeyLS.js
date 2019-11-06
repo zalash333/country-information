@@ -1,6 +1,9 @@
-const getKeyLS = () => {
+import getErrorEmptyParams from "./getErrorEmptyParams"
+
+const getKeyLS = (params) => {
   let select = Object.keys(localStorage)
-  select = select.filter(el => el !== 'language' && el.indexOf('Photos') === -1).map(el => ({ title: el.replace('Default','') }))
+  const typeParams = getErrorEmptyParams.checkUrlRequest(params)||'Default'
+  select = select.filter(el => el.indexOf(typeParams)>0).map(el => ({ title: el.replace(typeParams,'') }))
   return select
 }
 export default getKeyLS;

@@ -16,8 +16,10 @@ const Home = ({ location }) => {
   const [params, setParams] = useState('')
   useEffect(() => {
     if (JSON.stringify(params) !== JSON.stringify(url) && JSON.stringify(url) !== '{}') {
-      dispatch(countries.getCoutries(url))
-      setParams(url)
+      if(url.q){
+        dispatch(countries.getCoutries(url))
+        setParams(url)
+      }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch, url])

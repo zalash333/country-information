@@ -1,15 +1,17 @@
-const CountriesLS = (q, countries) => {
-  localStorage.setItem(`${q}Default`, JSON.stringify(countries));
+import getErrorEmptyParams from "./getErrorEmptyParams";
+
+const CountriesLS = (q, countries, params) => {
+  localStorage.setItem(`${q}${getErrorEmptyParams.checkUrlRequest(params)||'Default'}`, JSON.stringify(countries));
 }
-CountriesLS.Check = (q) => {
-  const couStorage = localStorage.getItem(`${q}Default`)
+CountriesLS.Check = (q,params) => {
+  const couStorage = localStorage.getItem(`${q}${getErrorEmptyParams.checkUrlRequest(params)||'Default'}`)
   if (!couStorage) {
     return false
   }
   return true
 }
-CountriesLS.Get = (q) => {
-  const couStorage = localStorage.getItem(`${q}Default`)
+CountriesLS.Get = (q,params) => {
+  const couStorage = localStorage.getItem(`${q}${getErrorEmptyParams.checkUrlRequest(params)||'Default'}`)
   return JSON.parse(couStorage)
 }
 export default CountriesLS;

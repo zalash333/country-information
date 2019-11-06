@@ -24,8 +24,8 @@ getErrorEmptyParams.SelectorCheck = (value) => {
 }
 getErrorEmptyParams.SelectorCode = (value) => {
   let params = 'default'
-    if (value.codeCountry) {
-      params = value.codeCountry
+    if (value.code && value.q) {
+      params = value.q
     }
   return params
 }

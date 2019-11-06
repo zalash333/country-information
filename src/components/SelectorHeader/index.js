@@ -14,6 +14,7 @@ const SelectorHeader = ({ location, history }) => {
             ignoreQueryPrefix: true,
         })
         url[event.target.value] = true
+        delete url.q
         url = qs.stringify(getErrorEmptyParams(url, event.target.value), {
             arrayFormat: 'brackets',
         });

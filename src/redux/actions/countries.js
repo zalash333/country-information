@@ -1,32 +1,49 @@
 import CountriesLS from "../../helpers/CountriesLS";
 import ImgLS from "../../helpers/ImgLS";
-import getErrorEmptyParams from "../../helpers/getErrorEmptyParams";
 
 
 const createUrl = (params) => {
-  debugger
-  let url = ''
+  let url = `/name/`
+  if(params.q){
+    url = `${url}${params.q}`
+  }
+  if(params.fullText){
+   return url = `${url}?fullText=true`
+  }
+  if(params.code){
+    return `/alpha/${params.q}`
+  }
+  if(params.currency){
+    return `currency/${params.q}`
+  }
+  return url
 }
 
 const getCoutries = (params) => {
-  createUrl(params)
   const { q ='russian' } = params
   return (dispatch, getState, { api }) => {
     dispatch({ type: 'TICKET_CREATE_REQUESTED' });
     dispatch({ type: 'LOADING_PHOTO', isRequested: true })
-    if (CountriesLS.Check(q) && !getErrorEmptyParams.checkUrlRequest(params)) {
-      dispatch({ type: 'COUNTRIES_SUCCESS', countries: CountriesLS.Get(q) })
+    if (CountriesLS.Check(q,params)) {
+      dispatch({ type: 'COUNTRIES_SUCCESS', countries: CountriesLS.Get(q,params) })
       dispatch({ type: 'LOADING_PHOTO', isRequested: false })
      return dispatch(getPhoto(q))
     }
+    if(!params.q){
+      return null
+    }
     api({
       method: 'GET',
-      url: `/name/${q}`
+      url: createUrl(params)
     })
       .then(
         (returnedData) => {
-          CountriesLS(q, returnedData.data)
-          dispatch({ type: 'COUNTRIES_SUCCESS', countries: returnedData.data })
+          let countries = returnedData.data
+          if(!Array.isArray(countries)){
+            countries = [countries]
+          }
+          CountriesLS(q, countries,params)
+          dispatch({ type: 'COUNTRIES_SUCCESS', countries})
           dispatch({ type: 'LOADING_PHOTO', isRequested: false })
           dispatch(getPhoto(q))
         },

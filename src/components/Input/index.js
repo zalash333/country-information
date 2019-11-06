@@ -57,20 +57,24 @@ const useStyles = makeStyles(() =>
 );
 
 
-const Input = ({ history }) => {
+const Input = ({ history, location }) => {
     const classes = useStyles();
     const [value, setValue] = useState('')
     const onChange = (val) => {
         setValue(val.target.value)
     }
     const getCoutries = (newValue = null) => {
-        let url = ''
+        let url = qs.parse(location.search, {
+            ignoreQueryPrefix: true,
+        })
         if (newValue) {
-            url = qs.stringify({ q: newValue }, {
+            url.q = newValue
+            url = qs.stringify(url, {
                 arrayFormat: 'brackets',
             });
         } else {
-            url = qs.stringify({ q: value }, {
+            url.q = value
+            url = qs.stringify(url, {
                 arrayFormat: 'brackets',
             });
         }
@@ -78,12 +82,16 @@ const Input = ({ history }) => {
     }
     return (
         <Autocomplete
-            options={getKeyLS()}
+            options={getKeyLS(qs.parse(location.search, {
+                ignoreQueryPrefix: true,
+            }))}
             getOptionLabel={(option) => option.title}
             style={{ width: 300 }}
             onChange={(e) => {
-                setValue(e.target.textContent)
-                getCoutries(e.target.textContent)
+                if (e.target.textContent) {
+                    setValue(e.target.textContent)
+                    getCoutries(e.target.textContent)
+                }
             }}
             renderInput={params => (<StyledTextField
                 {...params}
@@ -99,7 +107,10 @@ const Input = ({ history }) => {
                     }
                 }}
                 InputProps={{
-                    endAdornment: <InputAdornment onClick={getCoutries} position="end"><IconButton><Search className={clsx(classes.search)} /></IconButton></InputAdornment>,
+                    endAdornment: <InputAdornment onClick={(e) => {
+                        e.preventDefault()
+                        getCoutries()
+                    }} position="end"><IconButton><Search className={clsx(classes.search)} /></IconButton></InputAdornment>,
                 }}
             />)}
         />
