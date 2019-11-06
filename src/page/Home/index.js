@@ -15,15 +15,13 @@ const Home = ({ location }) => {
   })
   const [params, setParams] = useState('')
   useEffect(() => {
-    if (JSON.stringify(params) !== JSON.stringify(url)) {
+    if (JSON.stringify(params) !== JSON.stringify(url) && JSON.stringify(url) !== '{}') {
       dispatch(countries.getCoutries(url))
       setParams(url)
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch, url])
-  console.log(url)
   return (
-    <React.Fragment>
       <div className={cls.home}>
         <div className={cls.home_content}>
           <div  className={cls.title}>
@@ -32,12 +30,11 @@ const Home = ({ location }) => {
           </div>
           <div className={cls.countries_content}>
             {countriesAll.map((el, index) =>
-              <CountriesBox index={index} country={el} />
+              <CountriesBox key={index} index={index} country={el} />
             )}
           </div>
         </div>
       </div>
-    </React.Fragment>
   )
 };
 

@@ -1,0 +1,13 @@
+.search{
+  color: '#dadada'
+}
+.media {
+  height: 190px;
+  border: 1px solid silver;
+}
+@media screen and (max-width: 1000px) {
+  .card{
+    max-width: 48%;
+    min-width: 48%;
+  }
+}

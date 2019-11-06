@@ -2,6 +2,7 @@ import React from 'react';
 import cls from './style.module.scss'
 import { useSelector } from 'react-redux'
 import Input from '../../components/Input';
+import SelectorHeader from '../../components/SelectorHeader';
 
 
 
@@ -22,6 +23,7 @@ const Header = () => {
                         <div>Найди свою страну</div>
                     </div>
                     <div className={cls.header_content_search}>
+                    <SelectorHeader/>
                         <div className={cls.search_input}>
                             <Input/>
                         </div>
