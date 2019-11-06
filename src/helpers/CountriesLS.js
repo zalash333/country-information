@@ -1,15 +1,26 @@
-const CountriesLS = (q, countries) => {
-  localStorage.setItem(q, JSON.stringify(countries));
+const CountriesLS = (q, countries, params) => {
+
+  let couStorage = JSON.parse(localStorage.getItem(params))
+  if(!couStorage){
+    couStorage = {}
+  }
+  couStorage[q] = countries
+  localStorage.setItem(params, JSON.stringify(couStorage));
 }
-CountriesLS.Check = (q) => {
-  const couStorage = localStorage.getItem(q)
+CountriesLS.Check = (q, params) => {
+  const couStorage = localStorage.getItem(params)
+  const cousFull = JSON.parse(couStorage)
   if (!couStorage) {
+    return false
+  } else if (!cousFull) {
+    return false
+  } else if (!cousFull[q]) {
     return false
   }
   return true
 }
-CountriesLS.Get = (q) => {
-  const couStorage = localStorage.getItem(q)
-  return JSON.parse(couStorage)
+CountriesLS.Get = (q, params) => {
+  const couStorage = localStorage.getItem(params)
+  return JSON.parse(couStorage)[q]
 }
 export default CountriesLS;
