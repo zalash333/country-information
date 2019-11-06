@@ -6,8 +6,10 @@ import SelectorHeader from '../../components/SelectorHeader';
 import qs from 'qs'
 import { withRouter } from "react-router";
 import SelectorCode from '../../components/SelectorCode';
+import { useTranslation } from 'react-i18next';
 
 const Header = ({location}) => {
+    const {t} = useTranslation()
     const url = qs.parse(location.search, {
         ignoreQueryPrefix: true,
       })
@@ -23,7 +25,7 @@ const Header = ({location}) => {
                         </div>
                     </div>
                     <div className={cls.header_content_menu}>
-                        <div>Найди свою страну</div>
+                        <div>{t('header.title')}</div>
                     </div>
                     <div className={cls.header_content_search}>
                     <SelectorHeader/>

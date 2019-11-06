@@ -7,8 +7,10 @@ import Typography from '@material-ui/core/Typography';
 import Skeleton from '@material-ui/lab/Skeleton';
 import { useSelector } from 'react-redux'
 import cls from './style.module.scss'
+import { useTranslation } from 'react-i18next';
 
 const CountriesBox = ({ country }) => {
+    const {t} = useTranslation()
     const loading = useSelector((state) => state.countries.isRequested)
     return (
         <Card className={cls.card}>
@@ -33,11 +35,11 @@ const CountriesBox = ({ country }) => {
                     </React.Fragment>
                 ) : (
                         <Typography variant="body2" color="textSecondary" component="p">
-                            <p>язык: {country.languages.map((el, index) => `${el.name} (${el.iso639_2})${(country.languages.length - 1 !== index) ? ', ' : ''}`)}</p>
-                            <p>столица: {country.capital}</p>
-                            <p>валюта: {country.currencies[0].name} ({country.currencies[0].symbol}) ({country.currencies[0].code})</p>
-                            <p>регион: {country.region}</p>
-                            <p>часовые пояса: {country.timezones.map((el, index) => `${el}${(country.timezones.length - 1 !== index) ? ', ' : ''}`)}</p>
+                            <p>{t('box.language')}: {country.languages.map((el, index) => `${el.name} (${el.iso639_2})${(country.languages.length - 1 !== index) ? ', ' : ''}`)}</p>
+                            <p>{t('box.capital')}: {country.capital}</p>
+                            <p>{t('box.currency')}: {country.currencies[0].name} ({country.currencies[0].symbol}) ({country.currencies[0].code})</p>
+                            <p>{t('box.region')}: {country.region}</p>
+                            <p>{t('box.sentinels')}: {country.timezones.map((el, index) => `${el}${(country.timezones.length - 1 !== index) ? ', ' : ''}`)}</p>
                         </Typography>
                     )}
             </CardContent>

@@ -4,7 +4,9 @@ import { FormControl, Select, MenuItem } from '@material-ui/core';
 import qs from 'qs'
 import { withRouter } from "react-router";
 import getErrorEmptyParams from '../../helpers/getErrorEmptyParams';
+import { useTranslation } from 'react-i18next';
 const SelectorHeader = ({ location, history }) => {
+    const {t} = useTranslation()
     const [local, setLocal] = useState(getErrorEmptyParams.SelectorCheck(qs.parse(location.search, {
         ignoreQueryPrefix: true,
     })));
@@ -29,10 +31,10 @@ const SelectorHeader = ({ location, history }) => {
                 value={local}
                 onChange={handleChange}
             >
-                <MenuItem value='default'>Параметры</MenuItem>
-                <MenuItem value='fullText'>Полное название</MenuItem>
-                <MenuItem value='currency'>По валюте</MenuItem>
-                <MenuItem value='code'>Коды стран</MenuItem>
+                <MenuItem value='default'>{t('header.searchParams.default')}</MenuItem>
+                <MenuItem value='fullText'>{t('header.searchParams.fullText')}</MenuItem>
+                <MenuItem value='currency'>{t('header.searchParams.currency')}</MenuItem>
+                <MenuItem value='code'>{t('header.searchParams.code')}</MenuItem>
             </Select>
         </FormControl>
     )

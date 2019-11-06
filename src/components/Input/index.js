@@ -10,6 +10,7 @@ import Autocomplete from '@material-ui/lab/Autocomplete';
 import { TextField, InputAdornment } from '@material-ui/core'
 import { makeStyles, createStyles } from '@material-ui/core/styles';
 import getKeyLS from '../../helpers/getKeyLS';
+import { useTranslation } from 'react-i18next';
 // import cls from './style.module.scss'
 
 
@@ -58,6 +59,7 @@ const useStyles = makeStyles(() =>
 
 
 const Input = ({ history, location }) => {
+    const {t} = useTranslation()
     const classes = useStyles();
     const [value, setValue] = useState('')
     const onChange = (val) => {
@@ -98,7 +100,7 @@ const Input = ({ history, location }) => {
                 id="outlined-adornment-weight"
                 className={clsx(classes.margin, classes.textField)}
                 variant="outlined"
-                label="search"
+                label={t('header.input')}
                 value={value}
                 onChange={onChange}
                 onKeyPress={(e) => {

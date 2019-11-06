@@ -4,8 +4,10 @@ import qs from 'qs'
 import { withRouter } from "react-router";
 import codeJson from "../../codeCoontries/code.json";
 import getErrorEmptyParams from '../../helpers/getErrorEmptyParams.js';
+import { useTranslation } from 'react-i18next';
 
 const SelectorCode = ({ location, history }) => {
+    const {t} = useTranslation()
     const [local, setLocal] = useState(getErrorEmptyParams.SelectorCode(qs.parse(location.search, {
         ignoreQueryPrefix: true,
     })));
@@ -32,7 +34,7 @@ const SelectorCode = ({ location, history }) => {
                 value={local}
                 onChange={handleChange}
             >
-                <MenuItem value='default'>выбери код страны</MenuItem>
+                <MenuItem value='default'>{t('header.codeSelector')}</MenuItem>
                 {Object.keys(codeJson).map((el, index) => <MenuItem key={index} value={el}>{el}</MenuItem>)}
             </Select>
         </FormControl>
