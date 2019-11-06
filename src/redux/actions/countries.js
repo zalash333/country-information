@@ -1,11 +1,20 @@
 import CountriesLS from "../../helpers/CountriesLS";
 import ImgLS from "../../helpers/ImgLS";
+import getErrorEmptyParams from "../../helpers/getErrorEmptyParams";
 
-const getCoutries = ({ q ='russian' }) => {
+
+const createUrl = (params) => {
+  debugger
+  let url = ''
+}
+
+const getCoutries = (params) => {
+  createUrl(params)
+  const { q ='russian' } = params
   return (dispatch, getState, { api }) => {
     dispatch({ type: 'TICKET_CREATE_REQUESTED' });
     dispatch({ type: 'LOADING_PHOTO', isRequested: true })
-    if (CountriesLS.Check(q)) {
+    if (CountriesLS.Check(q) && !getErrorEmptyParams.checkUrlRequest(params)) {
       dispatch({ type: 'COUNTRIES_SUCCESS', countries: CountriesLS.Get(q) })
       dispatch({ type: 'LOADING_PHOTO', isRequested: false })
      return dispatch(getPhoto(q))
@@ -32,7 +41,7 @@ const getPhoto = (q = 'russian') => {
   return (dispatch, getState, { apiImg }) => {
     if (ImgLS.Check(q)) {
       const random = Math.floor(Math.random() * Math.floor(ImgLS.Get(q).length));
-          dispatch({ type: 'PHOTO_COUNTRIES', photoHeader: ImgLS.Get(q)[random].largeImageURL })
+          dispatch({ type: 'PHOTO_COUNTRIES', photoHeader: ImgLS.Get(q)[random] && ImgLS.Get(q)[random].largeImageURL })
      return  dispatch({ type: 'LOADING_PHOTO', isRequested: false })
     }
     return apiImg({
@@ -45,7 +54,7 @@ const getPhoto = (q = 'russian') => {
         (returnedData) => {
           ImgLS(q,returnedData.data.hits)
           const random = Math.floor(Math.random() * Math.floor(returnedData.data.hits.length));
-          dispatch({ type: 'PHOTO_COUNTRIES', photoHeader: returnedData.data.hits[random].largeImageURL })
+          dispatch({ type: 'PHOTO_COUNTRIES', photoHeader: returnedData.data.hits[random] && returnedData.data.hits[random].largeImageURL })
           dispatch({ type: 'LOADING_PHOTO', isRequested: false })
         },
         (error) => {
@@ -56,6 +65,5 @@ const getPhoto = (q = 'russian') => {
 }
 
 export default {
-  getCoutries,
-  getPhoto
+  getCoutries
 };

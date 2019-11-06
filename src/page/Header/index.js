@@ -3,11 +3,14 @@ import cls from './style.module.scss'
 import { useSelector } from 'react-redux'
 import Input from '../../components/Input';
 import SelectorHeader from '../../components/SelectorHeader';
+import qs from 'qs'
+import { withRouter } from "react-router";
+import SelectorCode from '../../components/SelectorCode';
 
-
-
-
-const Header = () => {
+const Header = ({location}) => {
+    const url = qs.parse(location.search, {
+        ignoreQueryPrefix: true,
+      })
     const photoHeader = useSelector((state)=>state.countries.photoHeader)
     return (
         <div className={cls.header}>
@@ -25,7 +28,7 @@ const Header = () => {
                     <div className={cls.header_content_search}>
                     <SelectorHeader/>
                         <div className={cls.search_input}>
-                            <Input/>
+                            {!url.code ? <Input/>:<SelectorCode/>}
                         </div>
                     </div>
                 </div>
@@ -34,4 +37,4 @@ const Header = () => {
     )
 };
 
-export default Header;
+export default withRouter(Header);

@@ -1,10 +1,23 @@
 import React, { useState } from 'react';
 import { FormControl, Select, MenuItem } from '@material-ui/core';
 
-const SelectorHeader = () => {
-    const [local, setLocal] = useState('default');
+import qs from 'qs'
+import { withRouter } from "react-router";
+import getErrorEmptyParams from '../../helpers/getErrorEmptyParams';
+const SelectorHeader = ({ location, history }) => {
+    const [local, setLocal] = useState(getErrorEmptyParams.SelectorCheck(qs.parse(location.search, {
+        ignoreQueryPrefix: true,
+    })));
     const handleChange = (event) => {
         setLocal(event.target.value);
+        let url = qs.parse(location.search, {
+            ignoreQueryPrefix: true,
+        })
+        url[event.target.value] = true
+        url = qs.stringify(getErrorEmptyParams(url, event.target.value), {
+            arrayFormat: 'brackets',
+        });
+        history.push(`?${url}`);
     };
 
     return (
@@ -23,4 +36,4 @@ const SelectorHeader = () => {
         </FormControl>
     )
 }
-export default SelectorHeader
+export default withRouter(SelectorHeader)
