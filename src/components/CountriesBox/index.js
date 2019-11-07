@@ -11,8 +11,12 @@ import { useTranslation } from 'react-i18next';
 import PropTypes from 'prop-types';
 
 const CountriesBox = ({ country, length }) => {
+
     const { t } = useTranslation()
     const loading = useSelector((state) => state.countries.isRequested)
+    if(!country){
+        return null
+    }
     return (
         <Card className={`${cls.card} ${length === 1 && cls.max2} ${length === 2 && cls.max}`}>
             <CardHeader
@@ -35,7 +39,7 @@ const CountriesBox = ({ country, length }) => {
                         <Skeleton height={6} width="80%" />
                     </React.Fragment>
                 ) : (
-                        <Typography variant="body2" color="textSecondary" component="p">
+                        <Typography variant="body2" color="textSecondary" component="div">
                             <p>{t('box.language')}: {country.languages.map((el, index) => `${el.name} (${el.iso639_2})${(country.languages.length - 1 !== index) ? ', ' : ''}`)}</p>
                             <p>{t('box.capital')}: {country.capital}</p>
                             <p>{t('box.currency')}: {country.currencies[0].name} ({country.currencies[0].symbol}) ({country.currencies[0].code})</p>
@@ -46,6 +50,10 @@ const CountriesBox = ({ country, length }) => {
             </CardContent>
         </Card>
     );
+}
+
+CountriesBox.defaultProps={
+    countries:{}
 }
 
 CountriesBox.propTypes = {
