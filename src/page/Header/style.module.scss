@@ -110,10 +110,12 @@
       height: 130px;
       .header_content {
         flex-direction: column;
+        .header_content_log{
+          display: none;
+        }
         .header_content_menu {
           justify-content: center;
           width: 100%;
-          margin-right: 26px;
         }
         .header_content_search {
           margin-left: 15px;

@@ -20,7 +20,7 @@ const Home = ({ location }) => {
   useEffect(() => {
     if (JSON.stringify(params) !== JSON.stringify(url) && JSON.stringify(url) !== '{}') {
       if(url.q){
-        dispatch(countries.getCoutries(url))
+        dispatch(countries.getCoutries(url,t))
         setParams(url)
       }
     }

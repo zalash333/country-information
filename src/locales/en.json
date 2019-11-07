@@ -34,5 +34,9 @@
   },
   "footer": {
     "title": "clear LS"
+  },
+  "request": {
+    "success": "The request was successful",
+    "data": "Data retrieved from storage"
   }
 }

@@ -1,5 +1,6 @@
 import CountriesLS from "../../helpers/CountriesLS";
 import ImgLS from "../../helpers/ImgLS";
+import { toast } from "react-toastify";
 
 
 const createUrl = (params) => {
@@ -19,7 +20,7 @@ const createUrl = (params) => {
   return url
 }
 
-const getCoutries = (params) => {
+const getCoutries = (params,t) => {
   const { q ='russian' } = params
   return (dispatch, getState, { api }) => {
     dispatch({ type: 'TICKET_CREATE_REQUESTED' });
@@ -27,6 +28,7 @@ const getCoutries = (params) => {
     if (CountriesLS.Check(q,params)) {
       dispatch({ type: 'COUNTRIES_SUCCESS', countries: CountriesLS.Get(q,params) })
       dispatch({ type: 'LOADING_PHOTO', isRequested: false })
+      toast.success(t('request.data'));
      return dispatch(getPhoto(q))
     }
     if(!params.q){
@@ -46,8 +48,10 @@ const getCoutries = (params) => {
           dispatch({ type: 'COUNTRIES_SUCCESS', countries})
           dispatch({ type: 'LOADING_PHOTO', isRequested: false })
           dispatch(getPhoto(q))
+          toast.success(t('request.success'));
         },
         (error) => {
+          toast.error(error.message);
           dispatch({ type: 'LOADING_PHOTO', isRequested: false })
         }
       );
@@ -75,6 +79,7 @@ const getPhoto = (q = 'russian') => {
           dispatch({ type: 'LOADING_PHOTO', isRequested: false })
         },
         (error) => {
+          toast.error(error.message);
           dispatch({ type: 'LOADING_PHOTO', isRequested: false })
         }
       );
