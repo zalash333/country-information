@@ -17,15 +17,15 @@ const Header = ({ location }) => {
         ignoreQueryPrefix: true,
     })
     const photoHeader = useSelector((state) => state.countries.photoHeader)
-    const [src,setSrc] = useState(photoHeader)
-    useEffect(()=>{
+    const [src, setSrc] = useState(photoHeader)
+    useEffect(() => {
         setSrc(photoHeader)
-    },[photoHeader])
+    }, [photoHeader])
     return (
         <div className={cls.header}>
-            <img className={cls.header_img} src={src} onError={(e,a)=>{
+            <img className={cls.header_img} src={src} onError={(e, a) => {
                 setSrc(defaultImg)
-                }} alt='header logo' />
+            }} alt='header logo' />
             <div className={cls.header_conteiner} id="back-to-top-anchor">
                 <div className={cls.header_content}>
                     <div className={cls.container_logo_title}>
@@ -52,7 +52,7 @@ const Header = ({ location }) => {
 
 SelectorCode.propTypes = {
     location: PropTypes.shape({
-        search:PropTypes.string
+        search: PropTypes.string
     }).isRequired
 }
 
