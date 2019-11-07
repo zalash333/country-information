@@ -1,12 +1,9 @@
 import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
-
 import enLang from "./en.json";
 import ruLang from "./ru.json";
 import Language from "../helpers/language.js";
 
-// the translations
-// (tip move them in a JSON file and import them)
 const resources = {
   en: {
     translation: enLang
@@ -17,12 +14,12 @@ const resources = {
 };
 
 i18n
-  .use(initReactI18next) // passes i18n down to react-i18next
+  .use(initReactI18next)
   .init({
     resources,
     lng: Language(),
     interpolation: {
-      escapeValue: false // react already safes from xss
+      escapeValue: false
     }
   });
 

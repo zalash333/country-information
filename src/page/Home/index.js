@@ -7,6 +7,7 @@ import CountriesBox from '../../components/CountriesBox';
 import qs from 'qs'
 import { useTranslation } from 'react-i18next';
 import declension from '../../helpers/declension';
+import PropTypes from 'prop-types';
 
 
 const Home = ({ location }) => {
@@ -42,5 +43,11 @@ const Home = ({ location }) => {
     </div>
   )
 };
+
+Home.propTypes = {
+  location: PropTypes.shape({
+      search:PropTypes.string
+  }).isRequired
+}
 
 export default Home;

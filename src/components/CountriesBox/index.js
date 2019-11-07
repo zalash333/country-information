@@ -8,9 +8,10 @@ import Skeleton from '@material-ui/lab/Skeleton';
 import { useSelector } from 'react-redux'
 import cls from './style.module.scss'
 import { useTranslation } from 'react-i18next';
+import PropTypes from 'prop-types';
 
-const CountriesBox = ({ country,length }) => {
-    const {t} = useTranslation()
+const CountriesBox = ({ country, length }) => {
+    const { t } = useTranslation()
     const loading = useSelector((state) => state.countries.isRequested)
     return (
         <Card className={`${cls.card} ${length === 1 && cls.max2} ${length === 2 && cls.max}`}>
@@ -45,6 +46,26 @@ const CountriesBox = ({ country,length }) => {
             </CardContent>
         </Card>
     );
+}
+
+CountriesBox.propTypes = {
+    countries: PropTypes.shape({
+        flag: PropTypes.string,
+        name: PropTypes.string,
+        capital: PropTypes.string,
+        region: PropTypes.string,
+        currencies: PropTypes.arrayOf({
+            name: PropTypes.string,
+            symbol: PropTypes.string,
+            code: PropTypes.string,
+        }),
+        languages: PropTypes.arrayOf({
+            name: PropTypes.string,
+            iso639_2: PropTypes.string,
+        }),
+        timezones: PropTypes.arrayOf(PropTypes.string),
+    }).isRequired,
+    length: PropTypes.number.isRequired,
 }
 
 export default CountriesBox

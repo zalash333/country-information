@@ -6,6 +6,7 @@ import codeJson from "../../codeCoontries/code.json";
 import getErrorEmptyParams from '../../helpers/getErrorEmptyParams.js';
 import { useTranslation } from 'react-i18next';
 import cls from '../style.module.scss'
+import PropTypes from 'prop-types';
 
 const SelectorCode = ({ location, history }) => {
     const {t} = useTranslation()
@@ -42,4 +43,14 @@ const SelectorCode = ({ location, history }) => {
         </FormControl>
     )
 }
+
+SelectorCode.propTypes = {
+    history: PropTypes.shape({
+        push:PropTypes.func
+    }).isRequired,
+    location: PropTypes.shape({
+        search:PropTypes.string
+    }).isRequired
+}
+
 export default withRouter(SelectorCode)

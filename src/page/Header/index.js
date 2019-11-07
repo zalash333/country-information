@@ -7,6 +7,7 @@ import qs from 'qs'
 import { withRouter } from "react-router";
 import SelectorCode from '../../components/SelectorCode';
 import { useTranslation } from 'react-i18next';
+import PropTypes from 'prop-types';
 
 const Header = ({ location }) => {
     const { t } = useTranslation()
@@ -40,5 +41,11 @@ const Header = ({ location }) => {
         </div>
     )
 };
+
+SelectorCode.propTypes = {
+    location: PropTypes.shape({
+        search:PropTypes.string
+    }).isRequired
+}
 
 export default withRouter(Header);

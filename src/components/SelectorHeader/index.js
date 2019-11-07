@@ -6,6 +6,7 @@ import { withRouter } from "react-router";
 import getErrorEmptyParams from '../../helpers/getErrorEmptyParams';
 import { useTranslation } from 'react-i18next';
 import cls from '../style.module.scss'
+import PropTypes from 'prop-types';
 
 
 const SelectorHeader = ({ location, history }) => {
@@ -43,4 +44,14 @@ const SelectorHeader = ({ location, history }) => {
         </FormControl>
     )
 }
+
+SelectorHeader.propTypes = {
+    history: PropTypes.shape({
+        push:PropTypes.func
+    }).isRequired,
+    location: PropTypes.shape({
+        search:PropTypes.string
+    }).isRequired
+}
+
 export default withRouter(SelectorHeader)

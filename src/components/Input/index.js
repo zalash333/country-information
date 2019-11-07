@@ -9,6 +9,7 @@ import { TextField, InputAdornment } from '@material-ui/core'
 import getKeyLS from '../../helpers/getKeyLS';
 import { useTranslation } from 'react-i18next';
 import cls from '../style.module.scss'
+import PropTypes from 'prop-types';
 
 const Input = ({ history, location }) => {
     const {t} = useTranslation()
@@ -39,10 +40,16 @@ const Input = ({ history, location }) => {
                 ignoreQueryPrefix: true,
             }))}
             getOptionLabel={(option) => option.title}
-            onChange={(e) => {
-                if (e.target.textContent) {
-                    setValue(e.target.textContent)
-                    getCoutries(e.target.textContent)
+            onChange={(e,b) => {
+                let createValue = ''
+                if (b&&b.title) {
+                    createValue = b.title
+                } else if (e.target.textContent) { 
+                    createValue = e.target.textContent
+                }
+                if (createValue) {
+                    setValue(createValue)
+                    getCoutries(createValue)
                 }
             }}
             renderInput={params => (<TextField
@@ -68,4 +75,14 @@ const Input = ({ history, location }) => {
         />
     )
 }
+
+Input.propTypes = {
+    history: PropTypes.shape({
+        push:PropTypes.func
+    }).isRequired,
+    location: PropTypes.shape({
+        search:PropTypes.string
+    }).isRequired
+}
+
 export default withRouter(Input)
