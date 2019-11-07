@@ -1,20 +1,17 @@
 .style_inpunt_and_selector {
   color: #dadada !important;
+  outline: none;
   svg {
     color: #dadada !important;
   }
   fieldset {
-    border-color: #dadada;
+    border-color: #dadada !important;
   }
   &[class*="Mui-focused"] {
     fieldset {
       border-color: #fafafa !important;
     }
   }
-  // [class*="MuiOutlinedInput-root"][class*="Mui-focused"]{
-  //   border-color: #fafafa !important;
-  //   z-index: 9999;
-  // }
   label {
     color: #dadada;
     &[class*="Mui-focused"] {
