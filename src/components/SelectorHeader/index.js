@@ -20,7 +20,7 @@ const SelectorHeader = ({ location, history }) => {
         url = qs.stringify(getErrorEmptyParams(url, event.target.value), {
             arrayFormat: 'brackets',
         });
-        history.push(`?${url}`);
+        history.push(`/?${url}`);
     };
 
     return (

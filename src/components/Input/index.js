@@ -71,16 +71,16 @@ const Input = ({ history, location }) => {
         })
         if (newValue) {
             url.q = newValue
-            url = qs.stringify(url, {
-                arrayFormat: 'brackets',
-            });
         } else {
             url.q = value
-            url = qs.stringify(url, {
-                arrayFormat: 'brackets',
-            });
         }
-        history.push(`?${url}`);
+        url = qs.stringify(url, {
+            arrayFormat: 'brackets',
+        });
+        if(value || newValue){
+            history.push(`?${url}`);
+        }
+        setValue('')
     }
     return (
         <Autocomplete
@@ -88,7 +88,6 @@ const Input = ({ history, location }) => {
                 ignoreQueryPrefix: true,
             }))}
             getOptionLabel={(option) => option.title}
-            style={{ width: 300 }}
             onChange={(e) => {
                 if (e.target.textContent) {
                     setValue(e.target.textContent)
