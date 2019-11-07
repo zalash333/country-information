@@ -5,6 +5,7 @@ import { withRouter } from "react-router";
 import codeJson from "../../codeCoontries/code.json";
 import getErrorEmptyParams from '../../helpers/getErrorEmptyParams.js';
 import { useTranslation } from 'react-i18next';
+import cls from '../style.module.scss'
 
 const SelectorCode = ({ location, history }) => {
     const {t} = useTranslation()
@@ -31,6 +32,7 @@ const SelectorCode = ({ location, history }) => {
             <Select
                 labelId="demo-simple-select-outlined-label"
                 id="demo-simple-select-outlined"
+                className={cls.style_inpunt_and_selector}
                 value={local}
                 onChange={handleChange}
             >

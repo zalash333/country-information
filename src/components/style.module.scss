@@ -1,0 +1,35 @@
+.style_inpunt_and_selector {
+  color: #dadada !important;
+  svg {
+    color: #dadada !important;
+  }
+  fieldset {
+    border-color: #dadada;
+  }
+  &[class*="Mui-focused"] {
+    fieldset {
+      border-color: #fafafa !important;
+    }
+  }
+  // [class*="MuiOutlinedInput-root"][class*="Mui-focused"]{
+  //   border-color: #fafafa !important;
+  //   z-index: 9999;
+  // }
+  label {
+    color: #dadada;
+    &[class*="Mui-focused"] {
+      color: #fafafa ;
+    }
+  }
+  input {
+    color: #fafafa;
+  }
+}
+.style_inpunt_and_selector:hover {
+  fieldset {
+    border-color: #fafafa !important;
+  }
+}
+.iconSearch {
+  color: "#dadada";
+}

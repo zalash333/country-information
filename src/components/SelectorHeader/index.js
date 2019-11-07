@@ -5,6 +5,9 @@ import qs from 'qs'
 import { withRouter } from "react-router";
 import getErrorEmptyParams from '../../helpers/getErrorEmptyParams';
 import { useTranslation } from 'react-i18next';
+import cls from '../style.module.scss'
+
+
 const SelectorHeader = ({ location, history }) => {
     const {t} = useTranslation()
     const [local, setLocal] = useState(getErrorEmptyParams.SelectorCheck(qs.parse(location.search, {
@@ -24,12 +27,13 @@ const SelectorHeader = ({ location, history }) => {
     };
 
     return (
-        <FormControl variant="outlined" >
+        <FormControl variant="outlined">
             <Select
                 labelId="demo-simple-select-outlined-label"
                 id="demo-simple-select-outlined"
                 value={local}
                 onChange={handleChange}
+                className={cls.style_inpunt_and_selector}
             >
                 <MenuItem value='default'>{t('header.searchParams.default')}</MenuItem>
                 <MenuItem value='fullText'>{t('header.searchParams.fullText')}</MenuItem>
