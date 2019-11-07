@@ -18,7 +18,6 @@
   .header_content {
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
-    min-width: 900px;
     max-width: 1140px;
     margin-left: auto;
     margin-right: auto;
@@ -30,7 +29,7 @@
     .header_content_log {
       display: flex;
       height: 100%;
-      margin-right: 85px;
+      margin-left: 15px;
       .logo_content {
         display: flex;
         cursor: pointer;
@@ -94,4 +93,35 @@
 }
 [class*="MuiOutlinedInput-adornedEnd"] {
   width: 500px;
+}
+.container_logo_title {
+  display: flex;
+}
+@media screen and (max-width: 1000px) {
+  .header {
+    [class*="MuiFormControl-root"] {
+      width: 100%;
+    }
+    [class*="MuiOutlinedInput-adornedEnd"] {
+      width: 100%;
+    }
+    height: 325px;
+    .header_conteiner {
+      height: 130px;
+      .header_content {
+        flex-direction: column;
+        .header_content_menu {
+          justify-content: center;
+          width: 100%;
+          margin-right: 26px;
+        }
+        .header_content_search {
+          margin-left: 15px;
+        }
+      }
+    }
+  }
+  .search_input{
+    width: 100%;
+  }
 }

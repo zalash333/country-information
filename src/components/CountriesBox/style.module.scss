@@ -1,4 +1,4 @@
-.card{
+.card {
   margin: 1%;
   max-width: 23%;
   min-width: 23%;
@@ -6,13 +6,36 @@
   flex-direction: column;
   justify-content: flex-start;
 }
+.max {
+  max-width: 48%;
+  min-width: 48%;
+}
+.max2 {
+  max-width: 98%;
+  min-width: 98%;
+  [class*="MuiTypography-root"] {
+    font-size: 25px;
+  }
+}
+.media2 {
+  height: 350px !important;
+}
 .media {
   height: 190px;
   border: 1px solid silver;
 }
+.block_information {
+  font-size: 25px;
+}
 @media screen and (max-width: 1000px) {
-  .card{
+  .card {
     max-width: 48%;
     min-width: 48%;
+  }
+}
+@media screen and (max-width: 500px) {
+  .card {
+    max-width: 98%;
+    min-width: 98%;
   }
 }

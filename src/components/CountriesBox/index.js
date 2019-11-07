@@ -9,11 +9,11 @@ import { useSelector } from 'react-redux'
 import cls from './style.module.scss'
 import { useTranslation } from 'react-i18next';
 
-const CountriesBox = ({ country }) => {
+const CountriesBox = ({ country,length }) => {
     const {t} = useTranslation()
     const loading = useSelector((state) => state.countries.isRequested)
     return (
-        <Card className={cls.card}>
+        <Card className={`${cls.card} ${length === 1 && cls.max2} ${length === 2 && cls.max}`}>
             <CardHeader
                 title={loading ? <Skeleton height={6} width="80%" /> : country.name}
                 subheader={loading ? <Skeleton height={6} width="40%" /> : country.alpha2Code}
@@ -22,7 +22,7 @@ const CountriesBox = ({ country }) => {
                 <Skeleton variant="rect" className={cls.media} />
             ) : (
                     <CardMedia
-                        className={cls.media}
+                        className={`${cls.media}  ${length === 1 && cls.media2}`}
                         image={country.flag}
                         title={country.name}
                     />

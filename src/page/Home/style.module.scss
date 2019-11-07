@@ -13,8 +13,6 @@
 .block_login {
   display: flex;
   flex-direction: column;
-  span {
-  }
   .input {
     margin-top: 20px;
   }
@@ -22,4 +20,14 @@
 .countries_content{
   display: flex;
   flex-wrap: wrap;
+}
+.title{
+  margin-left: 15px;
+}
+@media screen and (max-width: 500px) {
+  .title{
+    margin: 0;
+    display: flex;
+    justify-content: center;
+  }
 }

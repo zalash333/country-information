@@ -35,7 +35,7 @@ const Home = ({ location }) => {
         </div>
         <div className={cls.countries_content}>
           {countriesAll.map((el, index) =>
-            <CountriesBox key={index} index={index} country={el} />
+            <CountriesBox length={countriesAll.length} key={index} index={index} country={el} />
           )}
         </div>
       </div>
