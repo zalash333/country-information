@@ -21,9 +21,10 @@ const Header = ({ location }) => {
     useEffect(() => {
         setSrc(photoHeader)
     }, [photoHeader])
+    console.log(photoHeader)
     return (
         <div className={cls.header}>
-            <img className={cls.header_img} src={src} onError={(e, a) => {
+            <img className={cls.header_img} src={src || defaultImg} onError={(e, a) => {
                 setSrc(defaultImg)
             }} alt='header logo' />
             <div className={cls.header_conteiner} id="back-to-top-anchor">
