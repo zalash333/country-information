@@ -78,7 +78,7 @@ const Input = ({ history, location }) => {
             arrayFormat: 'brackets',
         });
         if(value || newValue){
-            history.push(`?${url}`);
+            history.push(`/?${url}`);
         }
         setValue('')
     }

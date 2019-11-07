@@ -22,7 +22,7 @@ const SelectorCode = ({ location, history }) => {
             url = qs.stringify({...url}, {
                 arrayFormat: 'brackets',
             });
-            history.push(`?${url}`);
+            history.push(`/?${url}`);
         }
     };
 
