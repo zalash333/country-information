@@ -13,7 +13,7 @@
 .max2 {
   max-width: 98%;
   min-width: 98%;
-  [class*="MuiTypography-root"] {
+  [class*="MuiTypography-colorTextSecondary"] {
     font-size: 25px;
   }
 }
@@ -31,11 +31,20 @@
   .card {
     max-width: 48%;
     min-width: 48%;
+    [class*="MuiTypography-colorTextSecondary"] {
+      font-size: 15px;
+    }
+    .media2 {
+      height: 250px !important;
+    }
   }
 }
 @media screen and (max-width: 500px) {
   .card {
     max-width: 98%;
     min-width: 98%;
+    [class*="MuiTypography-colorTextSecondary"] {
+      font-size: 15px;
+    }
   }
 }
