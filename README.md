@@ -6,3 +6,6 @@
 
 ## Имеет свои категории
 ![alt tag](https://sun9-52.userapi.com/c857224/v857224067/3bbbb/lumBjj7g8b0.jpg "screen")
+
+## Данные берутся с LS если подобный запрос уже был
+![alt tag](https://sun9-32.userapi.com/c857224/v857224343/3c02f/mwEsavoN_Fs.jpg "screen")
