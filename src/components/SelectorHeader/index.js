@@ -10,7 +10,7 @@ import PropTypes from 'prop-types';
 
 
 const SelectorHeader = ({ location, history }) => {
-    const {t} = useTranslation()
+    const { t } = useTranslation()
     const [local, setLocal] = useState(getErrorEmptyParams.SelectorCheck(qs.parse(location.search, {
         ignoreQueryPrefix: true,
     })));
@@ -27,6 +27,8 @@ const SelectorHeader = ({ location, history }) => {
         history.push(`/?${url}`);
     };
 
+    const arrayItem = ['default', 'fullText', 'currency', 'code']
+
     return (
         <FormControl variant="outlined">
             <Select
@@ -36,10 +38,9 @@ const SelectorHeader = ({ location, history }) => {
                 onChange={handleChange}
                 className={cls.style_inpunt_and_selector}
             >
-                <MenuItem value='default'>{t('header.searchParams.default')}</MenuItem>
-                <MenuItem value='fullText'>{t('header.searchParams.fullText')}</MenuItem>
-                <MenuItem value='currency'>{t('header.searchParams.currency')}</MenuItem>
-                <MenuItem value='code'>{t('header.searchParams.code')}</MenuItem>
+                {arrayItem.map(el => (
+                    <MenuItem value={el}>{t(`header.searchParams.${el}`)}</MenuItem>
+                ))}
             </Select>
         </FormControl>
     )
@@ -47,10 +48,10 @@ const SelectorHeader = ({ location, history }) => {
 
 SelectorHeader.propTypes = {
     history: PropTypes.shape({
-        push:PropTypes.func
+        push: PropTypes.func
     }).isRequired,
     location: PropTypes.shape({
-        search:PropTypes.string
+        search: PropTypes.string
     }).isRequired
 }
 

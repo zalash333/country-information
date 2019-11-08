@@ -10,6 +10,7 @@ import { useTranslation } from 'react-i18next';
 import PropTypes from 'prop-types';
 import defaultImg from '../../img/51_full.jpg'
 import logoImg from '../../img/countries.png'
+import { Link } from 'react-router-dom';
 
 const Header = ({ location }) => {
     const { t } = useTranslation()
@@ -31,11 +32,11 @@ const Header = ({ location }) => {
                     <div className={cls.container_logo_title}>
                         <div className={cls.header_content_log}>
                             <div className={cls.logo_content}>
-                                <img src={logoImg} alt='logo' />
+                                <Link to="/">  <img src={logoImg} alt='logo' /></Link>
                             </div>
                         </div>
                         <div className={cls.header_content_menu}>
-                            <div>{t('header.title')}</div>
+                            <Link to="/">{t('header.title')}</Link>
                         </div>
                     </div>
                     <div className={cls.header_content_search}>
